@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetobeca.R
 import com.example.projetobeca.data.model.Hero
+import com.example.projetobeca.data.response.CharacterResponse
+import com.example.projetobeca.presentation.details.CharacterDetailsActivity
 import kotlinx.android.synthetic.main.activity_characters.*
 
 class CharactersActivity : AppCompatActivity() {
@@ -27,7 +29,11 @@ class CharactersActivity : AppCompatActivity() {
                 with(recyclerCharacters) {
                     layoutManager = LinearLayoutManager(this@CharactersActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
-                    adapter = CharactersAdapter(characters)
+
+                    adapter = CharactersAdapter(it){
+                        val intent = CharacterDetailsActivity.getStartIntent(this@CharactersActivity,it.name,it.description,it.thumbnail.path,it.thumbnail.extension)
+                        this@CharactersActivity.startActivity(intent)
+                    }
                 }
             }
         })

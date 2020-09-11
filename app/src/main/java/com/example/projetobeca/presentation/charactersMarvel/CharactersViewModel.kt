@@ -33,6 +33,7 @@ class CharactersViewModel : ViewModel() {
                                 name = result.name,
                                 description = result.description,
                                 thumbHeroes = result.thumbnail.path + "/standard_amazing." + result.thumbnail.extension
+
                             )
                             characters.add(character)
                         }
