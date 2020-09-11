@@ -29,11 +29,10 @@ class CharactersViewModel : ViewModel() {
                     response.body()?.let { heroResponse ->
                         _charactersLiveData.value = heroResponse.data.results
                         for (result in heroResponse.data.results) {
-                            Log.i("Testes", heroResponse.data.results[0].thumbnail.path)
                             val character = Hero(
                                 name = result.name,
                                 description = result.description,
-                                thumbnail = result.thumbnail.path + "/standard_amazing." + result.thumbnail.extension
+                                thumbHeroes = result.thumbnail.path + "/standard_amazing." + result.thumbnail.extension
                             )
                             characters.add(character)
                         }

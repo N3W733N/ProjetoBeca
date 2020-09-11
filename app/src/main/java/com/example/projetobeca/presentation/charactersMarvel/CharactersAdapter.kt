@@ -1,9 +1,11 @@
 package com.example.projetobeca.presentation.charactersMarvel
 
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projetobeca.R
@@ -34,10 +36,12 @@ class CharactersAdapter(
 
             nomePersonagem.text = character.name
 
+            val img = (character.thumbnail.path + "/standard_amazing." + character.thumbnail.extension).split(":")
 
-            val img = character.thumbnail.path + "." + character.thumbnail.extension
-            Glide.with(itemView).load(img)
+            //Glide.with(itemView).load(img)
+            Glide.with(itemView).load("https:" + img[1]).into(imgHeroes)
             Log.i("tncdessaIMG", img.toString())
+
         }
     }
 }

@@ -19,12 +19,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCharacters"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toobarMain"
-        tools:listitem="@layout/item_character"
-        />
+        tools:listitem="@layout/item_character"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
