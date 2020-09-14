@@ -5,11 +5,11 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class CharacterResponse (
+data class CharacterResponse(
     @Json(name = "name")
-    val name : String,
+    val name: String,
     @Json(name = "description")
-    val description : String,
+    val description: String,
     @Json(name = "thumbnail")
-    val thumbnail : CharacterThumbnail
+    val thumbnail: CharacterThumbnail
 )

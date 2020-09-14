@@ -1,16 +1,11 @@
 package com.example.projetobeca.presentation.charactersMarvel
 
-import android.media.Image
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projetobeca.R
-import com.example.projetobeca.data.model.Hero
 import com.example.projetobeca.data.response.CharacterResponse
 import kotlinx.android.synthetic.main.item_character.view.*
 
@@ -48,7 +43,6 @@ class CharactersAdapter(
                     ":"
                 )
 
-            //Glide.with(itemView).load(img)
             Glide.with(itemView).load("https:" + img[1]).into(imgHeroes)
             itemView.setOnClickListener {
                 onItemClickListener.invoke(character)

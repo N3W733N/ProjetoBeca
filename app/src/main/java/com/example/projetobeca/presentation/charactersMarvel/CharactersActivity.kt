@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetobeca.R
-import com.example.projetobeca.data.model.Hero
-import com.example.projetobeca.data.response.CharacterResponse
 import com.example.projetobeca.presentation.details.CharacterDetailsActivity
 import kotlinx.android.synthetic.main.activity_characters.*
 
@@ -27,11 +25,18 @@ class CharactersActivity : AppCompatActivity() {
         viewModel.charactersLiveData.observe(this, Observer {
             it?.let { characters ->
                 with(recyclerCharacters) {
-                    layoutManager = LinearLayoutManager(this@CharactersActivity, RecyclerView.VERTICAL, false)
+                    layoutManager =
+                        LinearLayoutManager(this@CharactersActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
 
-                    adapter = CharactersAdapter(it){
-                        val intent = CharacterDetailsActivity.getStartIntent(this@CharactersActivity,it.name,it.description,it.thumbnail.path,it.thumbnail.extension)
+                    adapter = CharactersAdapter(characters) {
+                        val intent = CharacterDetailsActivity.getStartIntent(
+                            this@CharactersActivity,
+                            it.name,
+                            it.description,
+                            it.thumbnail.path,
+                            it.thumbnail.extension
+                        )
                         this@CharactersActivity.startActivity(intent)
                     }
                 }

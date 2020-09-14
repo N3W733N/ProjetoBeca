@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.projetobeca.data.ApiService
-import com.example.projetobeca.data.model.Hero
 import com.example.projetobeca.data.response.CharacterDataResults
 import com.example.projetobeca.data.response.CharacterResponse
 import retrofit2.Call
@@ -13,41 +12,32 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CharactersViewModel : ViewModel() {
-    val _charactersLiveData = MutableLiveData<List<CharacterResponse>>()
-    val charactersLiveData: LiveData<List<CharacterResponse>> = _charactersLiveData
+    val charactersMutableLD = MutableLiveData<List<CharacterResponse>>()
+    val charactersLiveData: LiveData<List<CharacterResponse>> = charactersMutableLD
 
     fun getCharacters() {
-        //charactersLiveData.value = createFakeCharacters()x'
-        ApiService.service.listcharacters().enqueue(object : Callback<CharacterDataResults> {
-            override fun onResponse(
-                call: Call<CharacterDataResults>,
-                response: Response<CharacterDataResults>
-            ) {
-                if (response.isSuccessful) {
-                    val characters: MutableList<Hero> = mutableListOf()
+        ApiService.run {
+            service.listcharacters().enqueue(object : Callback<CharacterDataResults> {
+                override fun onResponse(
+                    call: Call<CharacterDataResults>,
+                    response: Response<CharacterDataResults>
+                ) {
+                    if (response.isSuccessful) {
 
-                    response.body()?.let { heroResponse ->
-                        _charactersLiveData.value = heroResponse.data.results
-                        for (result in heroResponse.data.results) {
-                            val character = Hero(
-                                name = result.name,
-                                description = result.description,
-                                thumbHeroes = result.thumbnail.path + "/standard_amazing." + result.thumbnail.extension
-
-                            )
-                            characters.add(character)
+                        response.body()?.let { heroResponse ->
+                            charactersMutableLD.value = heroResponse.data.results
                         }
+                    } else {
+                        Log.e("error", response.message())
                     }
-                } else {
-                    Log.e("error", response.message())
                 }
-            }
 
-            override fun onFailure(call: Call<CharacterDataResults>, t: Throwable) {
-                Log.e("onFailure", t.message.toString())
-            }
+                override fun onFailure(call: Call<CharacterDataResults>, t: Throwable) {
+                    Log.e("onFailure", t.message.toString())
+                }
 
+            }
+            )
         }
-        )
     }
 }

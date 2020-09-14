@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="#1f1b24"
     tools:context=".presentation.charactersMarvel.CharactersActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobarMain"
         android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/toolBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toobarMain"
-        tools:listitem="@layout/item_character"/>
+        tools:listitem="@layout/item_character" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

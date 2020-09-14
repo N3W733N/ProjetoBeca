@@ -19,27 +19,25 @@ class CharacterDetailsActivity : AppCompatActivity() {
         toobarDetails.title = getString(R.string.character_title)
         setSupportActionBar(toobarMain)
 
-
         val path = intent.getStringExtra(EXTRA_PATH)
         val extension = intent.getStringExtra(EXTRA_EXTENTION)
         val description = intent.getStringExtra(EXTRA_DESCRIPTION)
         nomeHero.text = intent.getStringExtra(EXTRA_NAME)
-        characterDescription.setMovementMethod(ScrollingMovementMethod())
+        characterDescription.movementMethod = ScrollingMovementMethod()
 
-
-
-        if (description == null || description == ""){
+        if (description == null || description == "") {
             characterDescription.text = "Sem Descrição"
-        }else{
+        } else {
             characterDescription.text = description
         }
         val img =
-            (path + "/standard_amazing." + extension).split(
+            ("$path/standard_amazing.$extension").split(
                 ":"
             )
         Glide.with(this).load("https:" + img[1]).into(characterImg)
 
     }
+
     companion object {
         private const val EXTRA_NAME = "EXTRA_NAME"
         private const val EXTRA_DESCRIPTION = "DESCRIPTION"
@@ -51,14 +49,13 @@ class CharacterDetailsActivity : AppCompatActivity() {
             name: String,
             description: String,
             path: String,
-            extention: String
-        ) : Intent{
+            extension: String
+        ): Intent {
             return Intent(context, CharacterDetailsActivity::class.java).apply {
                 putExtra(EXTRA_NAME, name)
                 putExtra(EXTRA_DESCRIPTION, description)
                 putExtra(EXTRA_PATH, path)
-                putExtra(EXTRA_EXTENTION, extention)
-
+                putExtra(EXTRA_EXTENTION, extension)
             }
         }
     }

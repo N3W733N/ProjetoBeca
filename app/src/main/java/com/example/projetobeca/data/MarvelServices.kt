@@ -1,7 +1,6 @@
 package com.example.projetobeca.data
 
 import com.example.projetobeca.data.response.CharacterDataResults
-import org.w3c.dom.CharacterData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
