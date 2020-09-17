@@ -8,6 +8,19 @@
     tools:context=".presentation.details.CharacterDetailsActivity">
 
 
+    <TextView
+        android:id="@+id/idHero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/nomeHero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nomeHero"
+        tools:text="id" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobarDetails"
         android:layout_width="0dp"
@@ -21,7 +34,6 @@
         android:id="@+id/characterImg"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_marginTop="24dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +48,6 @@
         android:textColor="@android:color/white"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterImg"
         tools:text="Nome Personagem" />

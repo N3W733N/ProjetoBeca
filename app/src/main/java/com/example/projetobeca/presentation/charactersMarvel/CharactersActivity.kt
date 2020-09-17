@@ -14,9 +14,8 @@ class CharactersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_characters)
+        setToobar()
 
-        toobarMain.title = getString(R.string.character_title)
-        setSupportActionBar(toobarMain)
 
         val viewModel: CharactersViewModel =
             ViewModelProviders.of(this).get(CharactersViewModel::class.java)
@@ -32,10 +31,7 @@ class CharactersActivity : AppCompatActivity() {
                     adapter = CharactersAdapter(characters) {
                         val intent = CharacterDetailsActivity.getStartIntent(
                             this@CharactersActivity,
-                            it.name,
-                            it.description,
-                            it.thumbnail.path,
-                            it.thumbnail.extension
+                            it.id,
                         )
                         this@CharactersActivity.startActivity(intent)
                     }
@@ -43,5 +39,10 @@ class CharactersActivity : AppCompatActivity() {
             }
         })
         viewModel.getCharacters()
+    }
+
+    fun setToobar() {
+        toobarMain.title = getString(R.string.character_title)
+        setSupportActionBar(toobarMain)
     }
 }

@@ -13,8 +13,8 @@ class CharactersAdapter(
     private val characters: List<CharacterResponse>,
     val onItemClickListener: ((hero: CharacterResponse) -> Unit)
 
-
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
@@ -39,7 +39,7 @@ class CharactersAdapter(
             nomePersonagem.text = character.name
 
             val img =
-                (character.thumbnail.path + "/standard_amazing." + character.thumbnail.extension).split(
+                "${character.thumbnail.path}/standard_amazing.${character.thumbnail.extension}".split(
                     ":"
                 )
 

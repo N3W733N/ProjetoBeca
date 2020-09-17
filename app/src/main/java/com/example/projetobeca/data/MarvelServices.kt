@@ -3,6 +3,7 @@ package com.example.projetobeca.data
 import com.example.projetobeca.data.response.CharacterDataResults
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MarvelServices {
@@ -11,6 +12,15 @@ interface MarvelServices {
         @Query("limit") limit: Int = 100,
         @Query("ts") ts: String = TS,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("hash") hash: String = HASH.md5()  // md5(TS+Pk+PB)
+    ): Call<CharacterDataResults>
+
+    //retorna informações de um heroi pelo seu id
+    @GET("characters/{characterId}")
+    fun getCharById(
+        @Path("characterId") characterId: String,
+        @Query("ts") ts: String = TS,
+        @Query("apikey") apikey: String = PUBLIC_KEY,
         @Query("hash") hash: String = HASH.md5()  // md5(TS+Pk+PB)
     ): Call<CharacterDataResults>
 }
